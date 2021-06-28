@@ -4,13 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity(), TodoListener{
 
-    private var titleList = mutableListOf<Todo>()
     private lateinit var todoAdapter: TodoAdapter
+    private lateinit var recyclerView: RecyclerView
     private lateinit var btnAdd: Button
     private lateinit var etText: EditText
 
@@ -23,10 +24,10 @@ class MainActivity : AppCompatActivity(), TodoListener{
     }
 
     private fun setup() {
-        val rv = findViewById<RecyclerView>(R.id.recyclerView)
-        rv.layoutManager = LinearLayoutManager(this)
+        recyclerView = findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
         todoAdapter = TodoAdapter(this)
-        rv.adapter = todoAdapter
+        recyclerView.adapter = todoAdapter
 
         btnAdd = findViewById(R.id.btn_add)
         etText = findViewById(R.id.et_text)
@@ -35,8 +36,14 @@ class MainActivity : AppCompatActivity(), TodoListener{
     private fun onButtonAdd() {
         btnAdd.setOnClickListener {
             val text = etText.text.toString()
-            val title = Todo(text)
-            todoAdapter.setItems(title)
+
+            if (text == "") {
+                Toast.makeText(this, "Please, type some todo", Toast.LENGTH_LONG)
+                    .show()
+            } else {
+                val title = Todo(text)
+                todoAdapter.setItems(title)
+            }
         }
     }
 
