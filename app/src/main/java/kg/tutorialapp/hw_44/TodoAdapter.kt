@@ -5,25 +5,25 @@ import androidx.recyclerview.widget.RecyclerView
 
 class TodoAdapter(private val listener: TodoListener) : RecyclerView.Adapter<TodoViewHolder>() {
 
-    private val titleList = mutableListOf<Todo>()
+    private val todoList = mutableListOf<Todo>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
         return TodoViewHolder.create(parent, listener)
     }
 
-    override fun getItemCount() = titleList.count()
+    override fun getItemCount() = todoList.count()
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
-        holder.bind(titleList[position])
+        holder.bind(todoList[position])
     }
 
-    fun setItems(newTitle: Todo) {
-        titleList.add(newTitle)
+    fun setItems(newTodo: Todo) {
+        todoList.add(newTodo)
         notifyDataSetChanged()
     }
 
     fun delete(position: Int){
-        titleList.removeAt(position)
+        todoList.removeAt(position)
         notifyDataSetChanged()
     }
 
