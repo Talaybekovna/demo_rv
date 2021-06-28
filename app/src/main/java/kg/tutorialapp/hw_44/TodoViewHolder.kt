@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 
 class TodoViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
-    private val tvText: TextView = itemView.findViewById(R.id.tv_text)
+    private val tvText: TextView = itemView.findViewById(R.id.tv_todo)
     val btnDelete: TextView = itemView.findViewById(R.id.btn_delete)
 
     fun bind(title: Todo){
-        tvText.text = title.title
+        tvText.text = title.todo
     }
 
     companion object{

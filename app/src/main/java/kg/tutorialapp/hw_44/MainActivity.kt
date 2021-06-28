@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), TodoListener{
         recyclerView.adapter = todoAdapter
 
         btnAdd = findViewById(R.id.btn_add)
-        etText = findViewById(R.id.et_text)
+        etText = findViewById(R.id.et_todo)
     }
 
     private fun onButtonAdd() {
@@ -38,8 +38,7 @@ class MainActivity : AppCompatActivity(), TodoListener{
             val text = etText.text.toString()
 
             if (text == "") {
-                Toast.makeText(this, "Please, type some todo", Toast.LENGTH_LONG)
-                    .show()
+                Toast.makeText(this, "Please, type some todo", Toast.LENGTH_LONG).show()
             } else {
                 val title = Todo(text)
                 todoAdapter.setItems(title)
